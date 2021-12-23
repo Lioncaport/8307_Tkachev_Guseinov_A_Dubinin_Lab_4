@@ -1,3 +1,7 @@
+(defglobal ?*ID_glob* = 0)
+(defglobal ?*time_diff* = 0)
+(defglobal ?*mem_diff* = 0)
+
 (deffunction wrong_positions (?Depth ?TL ?TM ?TR ?ML ?MM ?MR ?BL ?BM ?BR)
 	(bind ?value ?Depth)
 	(if (!= ?TL 1)	then (bind ?value (+ ?value 1)) )
@@ -68,6 +72,8 @@
 	=>
 	(halt)
 	(printout t "The task solution has found" crlf)
+	(printout t "Time: " ?*time_diff* crlf)
+ 	(printout t "Mem: " ?*mem_diff* crlf)
 )
 
 (defrule find_min
@@ -88,10 +94,6 @@
 	(retract ?f_min)
 	(assert (min ?heu))
 )
-
-(defglobal ?*ID_glob* = 0)
-(defglobal ?*time_diff* = 0)
-(defglobal ?*mem_diff* = 0)
 
 (deffunction GetID()
 	(bind ?*ID_glob* (+ ?*ID_glob* 1))
